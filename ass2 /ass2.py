@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-image = np.array(cv2.imread("img2.jpg"))
+image = np.array(cv2.imread("image.jpg"))
 BlueArray = image[:, :, 0];
 GreenArray = image[:, :, 1];
 RedArray = image[:, :, 2];
@@ -22,9 +22,7 @@ rows,col = RedArray.shape;
 meanArray = np.ones((rows , col));
 for i in range(rows):
     for j in range(col):
-        sum = int(BlueArray[i][j]) + int(GreenArray[i][j]) + int(RedArray[i][j]);
-        meanArray[i][j] = sum/3;
-print(BlueArray[0][0] ,GreenArray[0] , RedArray[0] , meanArray[0]);
-cv2.imshow("img2.jpg", meanArray);
+        meanArray[i][j] = (int(BlueArray[i][j])*BlueWeight + int(GreenArray[i][j])*GreenWeight + int(RedArray[i][j])*RedWeight)/3;
+cv2.imshow("image.jpg", meanArray);
 cv2.waitKey(0)
 cv2.destroyAllWindows()
